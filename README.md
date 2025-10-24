@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🤖 AI Task Architect: NestJS + FastAPI Workflow Generator
 
 ### Generate valid n8n workflow JSON from natural language using a robust microservice architecture.
@@ -38,3 +39,7 @@ Follow these steps to get both services running locally.
 * Node.js (v18+) and npm
 * Python (v3.10+) and pip
 * An **OpenAI API Key**
+=======
+# AI-Task-Architect
+Generates structured n8n workflow JSON from text prompts using GPT-4o, orchestrated via a NestJS Gateway and FastAPI AI Engine.
+>>>>>>> 2ec4cf27ef1741ce975be1de9f981214194b3b2f
