@@ -2,12 +2,14 @@
 
 Generate valid **n8n workflow JSON** from natural language using a scalable microservice architecture.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
+[![n8n](https://img.shields.io/badge/n8n-FE8040?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/)
+
 
 ---
 
@@ -80,3 +82,51 @@ Response
 }
 
 
+<<<<<<< HEAD
+=======
+* Node.js (v18+) and npm
+* Python (v3.10+) and pip
+* An **OpenAI API Key**
+
+---
+
+## 🚀 Getting Started
+
+### 1. 🧠 Clone the repo
+
+```bash
+git clone https://github.com/niravpatidar37/ai-task-architect.git
+cd ai-task-architect
+
+cd llm_agent
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+pip install -r requirements.txt
+cp .env.example .env      # Add your OpenAI API Key
+uvicorn main:app --reload
+
+cd backend
+npm install
+npm run start:dev
+
+# FastAPI .env
+OPENAI_API_KEY=your-openai-api-key-here
+
+POST /generate
+
+{
+  "prompt": "Create a workflow that triggers every morning, fetches Tesla's stock price, and posts it to Slack."
+}
+
+Response 
+
+{
+  "name": "Tesla Stock Summary",
+  "nodes": [...],
+  "connections": {...}
+}
+
+
+
+>>>>>>> 1af1e14542ffde562ab26f9d564f3080e0462da5
