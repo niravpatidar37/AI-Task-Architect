@@ -38,7 +38,45 @@ Follow these steps to get both services running locally.
 * Node.js (v18+) and npm
 * Python (v3.10+) and pip
 * An **OpenAI API Key**
-=======
-# AI-Task-Architect
-Generates structured n8n workflow JSON from text prompts using GPT-4o, orchestrated via a NestJS Gateway and FastAPI AI Engine.
->>>>>>> 2ec4cf27ef1741ce975be1de9f981214194b3b2f
+
+---
+
+## 🚀 Getting Started
+
+### 1. 🧠 Clone the repo
+
+```bash
+git clone https://github.com/niravpatidar37/ai-task-architect.git
+cd ai-task-architect
+
+cd llm_agent
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+pip install -r requirements.txt
+cp .env.example .env      # Add your OpenAI API Key
+uvicorn main:app --reload
+
+cd backend
+npm install
+npm run start:dev
+
+# FastAPI .env
+OPENAI_API_KEY=your-openai-api-key-here
+
+POST /generate
+
+{
+  "prompt": "Create a workflow that triggers every morning, fetches Tesla's stock price, and posts it to Slack."
+}
+
+Response 
+
+{
+  "name": "Tesla Stock Summary",
+  "nodes": [...],
+  "connections": {...}
+}
+
+
+
