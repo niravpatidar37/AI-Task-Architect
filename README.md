@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🤖 AI Task Architect: NestJS + FastAPI Workflow Generator
 
 ### Generate valid n8n workflow JSON from natural language using a robust microservice architecture.
