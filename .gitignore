@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+venv/
+*.sqlite3
+*.db
+*.log
+
+# IDEs & Editors
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# n8n
+.n8n/
+
+# Node.js
+node_modules/
