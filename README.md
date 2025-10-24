@@ -1,6 +1,6 @@
 # 🤖 AI Task Architect: NestJS + FastAPI Workflow Generator
 
-### Generate valid n8n workflow JSON from natural language using a robust microservice architecture.
+Generate valid **n8n workflow JSON** from natural language using a scalable microservice architecture.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -9,36 +9,74 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
 
+---
+
 ## ✨ Project Overview
 
-The **AI Task Architect** is a demonstration of a **structured AI application** using a modern, scalable, dual-backend architecture. It functions as an **AI Agent** that takes a user's natural language request (e.g., "Monitor my email for new sales leads and log them in a Google Sheet") and automatically generates the corresponding, executable **n8n workflow JSON**.
+The **AI Task Architect** is a dual-backend AI application that takes natural language prompts like:
 
-This project showcases clean separation of concerns and robust API communication between two major backend frameworks:
+> _"Fetch Tesla stock price every morning and post to Slack."_
 
-| Component | Technology | Role |
-| :--- | :--- | :--- |
-| **API Gateway** | **NestJS (TypeScript)** | Handles client requests, input validation (`class-validator`), environment variable management, and detailed error mapping from the AI Engine. |
-| **AI Engine** | **FastAPI (Python)** | Dedicated service for AI computation, hosting the OpenAI function calling logic, prompt engineering, JSON validation, and business logic. |
+and generates a valid, executable **n8n workflow JSON** using the OpenAI API.
 
-## 📐 System Architecture
+### 🔧 Core Features
 
-The application follows a clean **API Gateway pattern** to ensure the core AI logic is decoupled and scalable.
+- ✅ FastAPI-powered AI backend with OpenAI function calling
+- ✅ NestJS Gateway with typed DTOs and error handling
+- ✅ Generates clean, importable n8n workflows (`name`, `nodes`, `connections`)
+- ✅ SQLite database integration for workflow history and reuse
+- ✅ JSON structure repair, enrichment, and validation
 
-1.  **Frontend (HTML/JS):** Sends the user prompt to the NestJS Gateway.
-2.  **NestJS Gateway (Port 3000):** Validates the request (DTO), looks up the FastAPI URL via `ConfigService`, and forwards the request via `axios`.
-3.  **FastAPI AI Engine (Port 8000):** Executes the Python `generate_workflow` function, calls the **GPT-4o** model using **Function Calling** to enforce JSON output, validates the n8n structure, and returns the final JSON.
-4.  **NestJS Gateway:** Catches any specific errors (like connection timeout or internal AI errors) and maps them to clean, descriptive HTTP responses for the client.
+---
+
+## 🧱 Architecture Overview
+
+| Layer | Tech Stack | Role |
+|-------|------------|------|
+| **Frontend** | HTML/JS or REST client | Sends natural prompts |
+| **API Gateway** | NestJS (TypeScript) | Receives prompts, validates input, forwards to FastAPI |
+| **AI Engine** | FastAPI (Python) | Generates structured workflows using GPT-4o |
+| **Database** | SQLite via SQLAlchemy | Stores generated workflows persistently |
+
+---
+
+---
 
 ## 🚀 Getting Started
 
-Follow these steps to get both services running locally.
+### 1. 🧠 Clone the repo
 
-### Prerequisites
+```bash
+git clone https://github.com/niravpatidar37/ai-task-architect.git
+cd ai-task-architect
 
-* Node.js (v18+) and npm
-* Python (v3.10+) and pip
-* An **OpenAI API Key**
-=======
-# AI-Task-Architect
-Generates structured n8n workflow JSON from text prompts using GPT-4o, orchestrated via a NestJS Gateway and FastAPI AI Engine.
+cd llm_agent
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+pip install -r requirements.txt
+cp .env.example .env      # Add your OpenAI API Key
+uvicorn main:app --reload
+
+cd backend
+npm install
+npm run start:dev
+
+# FastAPI .env
+OPENAI_API_KEY=your-openai-api-key-here
+
+POST /generate
+
+{
+  "prompt": "Create a workflow that triggers every morning, fetches Tesla's stock price, and posts it to Slack."
+}
+
+Response 
+
+{
+  "name": "Tesla Stock Summary",
+  "nodes": [...],
+  "connections": {...}
+}
+
 
